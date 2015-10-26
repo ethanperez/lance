@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ride
+from .models import Ride, Incident
 
 # Settings for ride admin
 class RideAdmin(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class RideAdmin(admin.ModelAdmin):
   ordering = ('-logged', '-date')
 
 admin.site.register(Ride, RideAdmin)
+admin.site.register(Incident)
