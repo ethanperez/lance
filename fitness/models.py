@@ -7,7 +7,7 @@ from team.models import Member
 class Ride(models.Model):
   member = models.ForeignKey(Member, verbose_name = 'name', related_name = 'rider')
   date = models.DateField(auto_now_add = True)
-  group_members = models.ManyToManyField(Member, related_name = 'group')
+  group_members = models.CharField(max_length = 200)
   miles = models.DecimalField(max_digits = 5, decimal_places = 2)
   pace = models.DecimalField(max_digits = 4, decimal_places = 2)
   duration = models.DurationField()
