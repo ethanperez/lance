@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Sum, Avg
 from team.models import Member
 import time
-from fitness.models import Ride
+from fitness.models import Ride, Incident
 
 # Create your views here.
 @login_required
@@ -30,7 +30,7 @@ def viewAllRides(request):
 @login_required
 def logRide(request):
     if request.method == 'POST':
-        group = request.POST['rideGroup']
+        group = request.POST.getlist['rideGroup[]']
         miles = request.POST['rideMiles']
         pace = request.POST['ridePace']
         comments = request.POST['rideComments']
@@ -59,3 +59,20 @@ def logRide(request):
         return HttpResponseRedirect(reverse('fitness:allRides'))
     else:
         return render(request, 'fitness/addRide.html')
+
+@login_required
+def viewAllIncidents(request):
+    # Retreive all of the mile records
+    incidents = Incident.objects.filter(member_id__exact = request.user).order_by('-date_logged')
+
+    # Context
+    context = {
+        'incidents': incidents,
+
+    }
+
+    return render(request, 'fitness/viewIncidents.html', context)
+
+@login_required
+def logIncident(request):
+    return render(request, 'fitness/addIncident.html')

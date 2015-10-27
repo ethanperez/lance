@@ -6,7 +6,7 @@ from team.models import Member
 
 class Ride(models.Model):
   member = models.ForeignKey(Member, verbose_name = 'name', related_name = 'rider')
-  date = models.DateField(auto_now_add = True)
+  date = models.DateField()
   group_members = models.CharField(max_length = 200)
   miles = models.DecimalField(max_digits = 5, decimal_places = 2)
   pace = models.DecimalField(max_digits = 4, decimal_places = 2)
@@ -42,3 +42,9 @@ class Incident(models.Model):
 
   def __str__(self):
     return "{0} - {1}".format(self.member, self.incident_date)
+
+  def status(self):
+    if follow_up:
+      return True
+    else:
+      return False

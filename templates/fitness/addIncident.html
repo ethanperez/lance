@@ -13,11 +13,11 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="http://static.t4k.pw/plugins/select2/select2.min.css">
     <link rel="stylesheet" href="http://static.t4k.pw/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="http://static.t4k.pw/dist/css/skins/skin-blue.min.css">
 
     <link rel="stylesheet" href="http://static.t4k.pw/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="http://static.t4k.pw/plugins/select2/select2.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -119,8 +119,8 @@
             <li class="treeview active">
               <a href="#"><i class="fa fa-bicycle"></i> <span>Fitness</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="active"><a href="{% url 'fitness:allRides' %}">Rides</a></li>
-                <li><a href="{% url 'fitness:allIncidents' %}">Incidents</a></li>
+                <li><a href="{% url 'fitness:allRides' %}">Rides</a></li>
+                <li  class="active"><a href="{% url 'fitness:allIncidents' %}">Incidents</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -145,11 +145,11 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>Log a Ride</h1>
+          <h1>Log an Incident</h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-bicycle"></i> Fitness</a></li>
-            <li><a href="#"> Rides</a></li>
-            <li><a href="#"> Log a Ride</a></li>
+            <li><a href="#"> Incidents</a></li>
+            <li><a href="#"> Log an Incident</a></li>
           </ol>
         </section>
 
@@ -171,11 +171,11 @@
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
               <div class="box box-primary">
-                <form role="form" action="{% url 'fitness:logRide' %}" method="post">
+                <form role="form" action="{% url 'fitness:logIncident' %}" method="post">
                 {% csrf_token %}
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="data">Date</label>
+                      <label for="data">Incident Date</label>
                       <div class="input-group">
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
@@ -184,105 +184,40 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label>Ride Group</label>
-                      <select id="rideGroup" name="rideGroup[]" class="form-control select2" multiple="" data-placeholder="Start typing a name" style="width: 100%;">
-                        <option value="Aatiq Ghulam">Aatiq Ghulam</option>
-                        <option value="Andrew Coulter">Andrew Coulter</option>
-                        <option value="Andrea Garcia-Jimenez">Andrea Garcia-Jimenez</option>
-                        <option value="Alexandria Lawrence">Alexandria Lawrence</option>
-                        <option value="Amberlee Adams">Amberlee Adams</option>
-                        <option value="Annie Biondi">Annie Biondi</option>
-                        <option value="Annie Henson">Annie Henson</option>
-                        <option value="Michael Rodney">Michael Rodney</option>
-                        <option value="Arin Madera">Arin Madera</option>
-                        <option value="Ayesha Kang">Ayesha Kang</option>
-                        <option value="Ben Deschner">Ben Deschner</option>
-                        <option value="Brook Chambers">Brook Chambers</option>
-                        <option value="Christy Goldberg">Christy Goldberg</option>
-                        <option value="Courtney Koepke">Courtney Koepke</option>
-                        <option value="Cullen Bounds">Cullen Bounds</option>
-                        <option value="Dana Moore">Dana Moore</option>
-                        <option value="Elizabeth Knoble">Elizabeth Knoble</option>
-                        <option value="Ellen Thanheiser">Ellen Thanheiser</option>
-                        <option value="Francisco Dominguez">Francisco Dominguez</option>
-                        <option value="Fred Tally-Foos">Fred Tally-Foos</option>
-                        <option value="Fariha Hossain">Fariha Hossain</option>
-                        <option value="John Flynn">John Flynn</option>
-                        <option value="Gabe Oxford">Gabe Oxford</option>
-                        <option value="Geena May">Geena May</option>
-                        <option value="Geetika Rao">Geetika Rao</option>
-                        <option value="Genaro DeLeon">Genaro DeLeon</option>
-                        <option value="Helen Tang">Helen Tang</option>
-                        <option value="Holly Jones">Holly Jones</option>
-                        <option value="Holly Swaldi">Holly Swaldi</option>
-                        <option value="Imran Zafar">Imran Zafar</option>
-                        <option value="Jacob Lozano">Jacob Lozano</option>
-                        <option value="Jeffery Saeling">Jeffery Saeling</option>
-                        <option value="Jennifer Henderson">Jennifer Henderson</option>
-                        <option value="Josh Holtkort">Josh Holtkort</option>
-                        <option value="Jose Talavera">Jose Talavera</option>
-                        <option value="Joshua Bower">Joshua Bower</option>
-                        <option value="Kayla Leonard">Kayla Leonard</option>
-                        <option value="Khoi Le">Khoi Le</option>
-                        <option value="Kim Doughty">Kim Doughty</option>
-                        <option value="Kristen Stanley">Kristen Stanley</option>
-                        <option value="Kyle Campbell">Kyle Campbell</option>
-                        <option value="Larissa Puente">Larissa Puente</option>
-                        <option value="Laura Elizondo">Laura Elizondo</option>
-                        <option value="Luciano Posada">Luciano Posada</option>
-                        <option value="Madhushree Zope">Madhushree Zope</option>
-                        <option value="Maggie Jackson">Maggie Jackson</option>
-                        <option value="Mary McKenna">Mary McKenna</option>
-                        <option value="Melissa Miller">Melissa Miller</option>
-                        <option value="Melissa Meyer">Melissa Meyer</option>
-                        <option value="Mackenzie White">Mackenzie White</option>
-                        <option value="Matthew Schneider">Matthew Schneider</option>
-                        <option value="Michael Tatalovich">Michael Tatalovich</option>
-                        <option value="Nathaniel Barley">Nathaniel Barley</option>
-                        <option value="Neal Talukdar">Neal Talukdar</option>
-                        <option value="Nate Roberts">Nate Roberts</option>
-                        <option value="Nicole Lohrstorfer">Nicole Lohrstorfer</option>
-                        <option value="Niket Parikh">Niket Parikh</option>
-                        <option value="Olivia Berkeley">Olivia Berkeley</option>
-                        <option value="Olivia Arena">Olivia Arena</option>
-                        <option value="Oliver Noble">Oliver Noble</option>
-                        <option value="Parysa Ghanimi">Parysa Ghanimi</option>
-                        <option value="Patrick Golden">Patrick Golden</option>
-                        <option value="Samantha Meyer">Samantha Meyer</option>
-                        <option value="Sarah Alpert">Sarah Alpert</option>
-                        <option value="Sarah Qureshy">Sarah Qureshy</option>
-                        <option value="Kristan Schiele">Kristan Schiele</option>
-                        <option value="Shannon Lu">Shannon Lu</option>
-                        <option value="Shantanu Banerjee">Shantanu Banerjee</option>
-                        <option value="Shawn Killian">Shawn Killian</option>
-                        <option value="Shelby Schreiber">Shelby Schreiber</option>
-                        <option value="Sirena Gutierrez">Sirena Gutierrez</option>
-                        <option value="Stephen Proler">Stephen Proler</option>
-                        <option value="Tessa Matus">Tessa Matus</option>
-                        <option value="Victoria Salinas">Victoria Salinas</option>
-                        <option value="Baylor Morrison">Baylor Morrison</option>
-                        <option value="Alumni">Alumni</option>
-                      </select>
-                    </div><!-- /.form-group -->
+                      <label for="data">Event/Activity</label>
+                      <input type="text" class="form-control" id="rideGroup" name="rideGroup" required>
+                    </div>
                     <div class="form-group">
-                      <label for="data">Miles Ridden</label>
+                      <label for="data">Incident Location</label>
                       <input type="text" class="form-control" id="rideMiles" name="rideMiles" required>
                     </div>
                     <div class="form-group">
-                      <label for="data">Pace</label>
-                      <input type="text" class="form-control" id="ridePace" name="ridePace" required>
+                      <label for="data">Incident Description</label>
+                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="data">Time Ridden</label>
-                      <input type="text" class="form-control" id="rideTime" name="rideTime" required>
+                      <label for="data">Surroundings Description</label>
+                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="data">Comments</label>
+                      <label for="data">Witnesses</label>
+                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="data">Responders</label>
+                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="data">Injuries</label>
+                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="data">Follow Up Action</label>
                       <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
                     </div>
                   </div>
                   <div class="box-footer">
-                    <button class="btn btn-primary" type="submit">Log Ride</button>
+                    <button class="btn btn-primary" type="submit">Log Incident</button>
                   </div>
                 </form>
               </div>
@@ -315,15 +250,12 @@
     <script src="http://static.t4k.pw/plugins/select2/select2.full.min.js"></script>
     <script src="http://static.t4k.pw/dist/css/jquery.maskedinput.min.js"></script>
     <script>
-      $('#rideGroup').select2();
-
       $('#rideDate').datepicker({
         format: "yyyy-mm-dd",
         todayHighlight: true,
         startDate: '-7d',
         endDate: '0d'
       });
-
       $("#rideTime").mask("99:99:99");
     </script>
   </body>

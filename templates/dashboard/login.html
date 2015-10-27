@@ -26,7 +26,7 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Texas 4000</b> RMS</a>
+        <a href="{% url 'dashboard:login' %}"><b>Texas 4000</b> RMS</a>
       </div><!-- /.login-logo -->
       {% if alert_title %}
         <div class="row">
@@ -40,7 +40,6 @@
         </div>
       {% endif %}
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
         <form action="{% url 'dashboard:login' %}" method="post">
           {% csrf_token %}
           <div class="form-group has-feedback">

@@ -4,7 +4,7 @@ from .models import Ride, Incident
 # Settings for ride admin
 class RideAdmin(admin.ModelAdmin):
 
-  list_display = ('member', 'get_group_members', 'date', 'duration', 'miles', 'pace', 'logged')
+  list_display = ('member', 'group_members', 'date', 'duration', 'miles', 'pace', 'logged')
   list_filter = ('date', 'logged')
   search_fields = ('rider__first_name', 'rider__last_name')
   ordering = ('-logged', '-date')

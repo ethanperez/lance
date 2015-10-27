@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Sum
+from fitness.models import Ride
 
 def viewLogin(request):
     if request.method == 'POST':
@@ -33,3 +35,19 @@ def viewLogin(request):
 def viewLogout(request):
     logout(request)
     return(redirect('dashboard:login'))
+
+@login_required
+def dashboard(request):
+    # Rides
+    rides = Ride.objects.filter(member_id__exact = request.user).order_by('-date')
+    recent_rides = Ride.objects.filter(member_id__exact = request.user).order_by('-date')[:5]
+    miles = rides.aggregate(Sum('miles'))
+
+
+    context = {
+        'rides': rides,
+        'recent_rides': recent_rides,
+        'total_miles': miles
+    }
+
+    return render(request, 'dashboard/dashboard.html', context)
