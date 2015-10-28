@@ -22,12 +22,6 @@ class Ride(models.Model):
   get_group_members.short_description = 'Group members'
 
 class Incident(models.Model):
-  TYPE_CHOICES = (
-    ('nm', 'Near Miss'),
-    ('ac', 'Accident'),
-  )
-
-  type = models.CharField(max_length = 2, choices = TYPE_CHOICES)
   member = models.ForeignKey(Member, verbose_name = 'name', related_name = 'incident_rider')
   date_logged = models.DateTimeField(auto_now_add = True)
   event = models.CharField(max_length = 100)
@@ -35,9 +29,10 @@ class Incident(models.Model):
   incident_location = models.CharField('location of incident', max_length = 100)
   incident_description = models.TextField('provide full description of all events leading up to and including the incident')
   surrounding_description = models.TextField('provide full description of all events leading up to and including the incident')
-  witnesses = HStoreField()
+  witnesses = models.TextField()
   responders = models.TextField('who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)')
-  injuries = HStoreField()
+  injuries = models.TextField()
+  first_aid = models.TextField()
   follow_up = models.TextField('description of follow up action')
 
   def __str__(self):

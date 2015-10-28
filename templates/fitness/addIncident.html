@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="http://static.t4k.pw/plugins/timepicker/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="http://static.t4k.pw/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="http://static.t4k.pw/plugins/select2/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="http://static.t4k.pw/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="http://static.t4k.pw/dist/css/skins/skin-blue.min.css">
-
-    <link rel="stylesheet" href="http://static.t4k.pw/plugins/datepicker/datepicker3.css">
-    <link rel="stylesheet" href="http://static.t4k.pw/plugins/select2/select2.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -180,40 +180,60 @@
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" class="form-control pull-right active" id="rideDate" name="rideDate">
+                        <input type="text" class="form-control pull-right" id="incidentDate" name="incidentDate" required>
                       </div>
+                    </div>
+                    <div class="bootstrap-timepicker">
+                      <div class="form-group">
+                        <label>Incident Time</label>
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-clock-o"></i>
+                          </div>
+                          <input type="text" class="form-control timepicker pull-right" id="incidentTime" name="incidentTime" required>
+                        </div><!-- /.input group -->
+                      </div><!-- /.form group -->
                     </div>
                     <div class="form-group">
                       <label for="data">Event/Activity</label>
-                      <input type="text" class="form-control" id="rideGroup" name="rideGroup" required>
+                      <input type="text" class="form-control" id="incidentEvent" name="incidentEvent" required>
                     </div>
                     <div class="form-group">
                       <label for="data">Incident Location</label>
-                      <input type="text" class="form-control" id="rideMiles" name="rideMiles" required>
+                      <input type="text" class="form-control" id="incidentLocation" name="incidentLocation" required>
                     </div>
                     <div class="form-group">
-                      <label for="data">Incident Description</label>
-                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                      <label for="data">Provide full description of all events leading up to and including the incident</label>
+                      <textarea class="form-control" rows="4" id="incidentDescription" name="incidentDescription" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="data">Surroundings Description</label>
-                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                      <label for="data">Please provide detailed description of surroundings, facility condition, weather condition, etc.</label>
+                      <textarea class="form-control" rows="4" id="surroundingsDescription" name="surroundingsDescription" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="data">Witnesses</label>
-                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                      <label for="data">Witnesses (provide full name, address, and statement)</label>
+                      <textarea class="form-control" rows="4" id="incidentWitness" name="incidentWitness" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="data">Responders</label>
-                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                      <label for="data">Who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)</label>
+                      <textarea class="form-control" rows="4" id="incidentResponders" name="incidentResponders" required></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="data">Injuries</label>
-                      <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                      <label for="data">If an injury is involved, please provide the following - name, age, phone, address, sex, relationship to event, and description</label>
+                      <textarea class="form-control" rows="4" id="incidentInjury" name="incidentInjury"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="data">Follow Up Action</label>
+                      <label for="data">If an injury is involved, was first aid administered? If so, by whom?</label>
+                      <textarea class="form-control" rows="4" id="incidentFirstAid" name="incidentFirstAid"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="data">Description of follow up action</label>
                       <textarea class="form-control" rows="4" id="rideComments" name="rideComments" required></textarea>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" required>I verify that this report is true and correct to the best of my knowledge.
+                      </label>
                     </div>
                   </div>
                   <div class="box-footer">
@@ -247,16 +267,19 @@
     <!-- AdminLTE App -->
     <script src="http://static.t4k.pw/dist/js/app.min.js"></script>
     <script src="http://static.t4k.pw/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="http://static.t4k.pw/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="http://static.t4k.pw/plugins/select2/select2.full.min.js"></script>
     <script src="http://static.t4k.pw/dist/css/jquery.maskedinput.min.js"></script>
     <script>
-      $('#rideDate').datepicker({
+      $('#incidentDate').datepicker({
         format: "yyyy-mm-dd",
         todayHighlight: true,
-        startDate: '-7d',
-        endDate: '0d'
+        autoclose: true
       });
-      $("#rideTime").mask("99:99:99");
+      $("#incidentTime").timepicker({
+          showInputs: false,
+          minuteStep: 1
+      });
     </script>
   </body>
 </html>

@@ -42,12 +42,14 @@ def dashboard(request):
     rides = Ride.objects.filter(member_id__exact = request.user).order_by('-date')
     recent_rides = Ride.objects.filter(member_id__exact = request.user).order_by('-date')[:5]
     miles = rides.aggregate(Sum('miles'))
+    duration = rides.aggregate(Sum('duration'))
 
 
     context = {
         'rides': rides,
         'recent_rides': recent_rides,
-        'total_miles': miles
+        'total_miles': miles,
+        'total_duration': duration
     }
 
     return render(request, 'dashboard/dashboard.html', context)

@@ -30,7 +30,7 @@ def viewAllRides(request):
 @login_required
 def logRide(request):
     if request.method == 'POST':
-        group = request.POST.getlist['rideGroup[]']
+        group = ', '.join(request.POST.getlist('rideGroup[]'))
         miles = request.POST['rideMiles']
         pace = request.POST['ridePace']
         comments = request.POST['rideComments']
@@ -75,4 +75,14 @@ def viewAllIncidents(request):
 
 @login_required
 def logIncident(request):
-    return render(request, 'fitness/addIncident.html')
+    if request.method == 'POST':
+        date = request.POST['incidentDate'] + request.POST['incidentTime']
+        event = request.POST['incidentEvent']
+        location = request.POST['incidentLocation']
+
+
+
+
+
+    else:
+        return render(request, 'fitness/addIncident.html')
