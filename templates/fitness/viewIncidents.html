@@ -169,32 +169,26 @@
                   <table class="table table-hover">
                     <tbody>
                       <tr>
-                        <th>Date</th>
+                        <th>Incident Date</th>
+                        <th>Report Created</th>
                         <th>Status</th>
                         <th>Details</th>
                       </tr>
-                      <tr>
-                        <td>10-22-15</td>
-                        <td><span class="label label-success">Completed</span></td>
-                        <td><a href="#">View Details</a></td>
-                      </tr>
-                      <tr>
-                        <td>10-22-15</td>
-                        <td><span class="label label-warning">Unfinished</span></td>
-                        <td><a href="#">Complete Report</a></td>
-                      </tr>
+                      {%if incidents %}
                       {% for incident in incidents %}
                       <tr>
+                        <td>{{ incident.incident_date }}</td>
                         <td>{{ incident.date_logged }}</td>
-                        {% if incident.status %}
+                        {% if incident.follow_up %}
                         <td><span class="label label-success">Completed</span></td>
-                        <td><a href="#">View Report</a></td>
+                        <td><a href="{% url 'fitness:viewIncident' incident.id %}">View Report</a></td>
                         {% else %}
                         <td><span class="label label-warning">Unfinished</span></td>
                         <td><a href="#">Complete Report</a></td>
                         {% endif %}
                       </tr>
                       {% endfor %}
+                      {% endif %}
                     </tbody>
                   </table>
                 </div>

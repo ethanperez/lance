@@ -155,105 +155,28 @@
 
         <!-- Main content -->
         <section class="content">
-        {% if alert_title %}
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="alert alert-warning alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-warning"></i> {{ alert_title }}</h4>
-                {{ alert_message }}
-              </div>
-            </div>
-          </div>
-        {% endif %}
-
-
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
-              <div class="box box-primary">
-                <form role="form" action="{% url 'fitness:logIncident' %}" method="post">
-                {% csrf_token %}
-                  <div class="box-body">
-                    <div class="form-group">
-                    <label>Incident Type</label>
-                    <select class="form-control" id="incidentType" required>
-                      <option selected="true" disabled="disabled">Choose an Incident Type</option>
-                      <option value="nm">Near Miss</option>
-                      <option value="ac">Accident</option>
-                      </select>
-                    </div>
-                    <div class="formBase">
-                      <div class="form-group">
-                        <label for="data">Incident Date</label>
-                        <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control pull-right" id="incidentDate" name="incidentDate" required>
-                        </div>
-                      </div>
-                      <div class="bootstrap-timepicker">
-                        <div class="form-group">
-                          <label>Incident Time</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-clock-o"></i>
-                            </div>
-                            <input type="text" class="form-control timepicker pull-right" id="incidentTime" name="incidentTime" required>
-                          </div><!-- /.input group -->
-                        </div><!-- /.form group -->
-                      </div>
-                      <div class="form-group">
-                        <label for="data">Event/Activity</label>
-                        <input type="text" class="form-control" id="incidentEvent" name="incidentEvent" required>
-                      </div>
-                      <div class="form-group">
-                        <label for="data">Incident Location</label>
-                        <input type="text" class="form-control" id="incidentLocation" name="incidentLocation" required>
-                      </div>
-                      <div class="form-group">
-                        <label for="data">Provide full description of all events leading up to and including the incident</label>
-                        <textarea class="form-control" rows="4" id="incidentDescription" name="incidentDescription" required></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label for="data">Please provide detailed description of surroundings, facility condition, weather condition, etc.</label>
-                        <textarea class="form-control" rows="4" id="surroundingsDescription" name="surroundingsDescription" required></textarea>
-                      </div>
-                    </div>
-                    <div class="formAccident">
-                      <div class="form-group">
-                        <label for="data">Witnesses (provide full name, address, and statement)</label>
-                        <textarea class="form-control" rows="4" id="incidentWitness" name="incidentWitness"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label for="data">Who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)</label>
-                        <textarea class="form-control" rows="4" id="incidentResponders" name="incidentResponders"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label for="data">If an injury is involved, please provide the following - name, age, phone, address, sex, relationship to event, and description</label>
-                        <textarea class="form-control" rows="4" id="incidentInjury" name="incidentInjury"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label for="data">If an injury is involved, was first aid administered? If so, by whom?</label>
-                        <textarea class="form-control" rows="4" id="incidentFirstAid" name="incidentFirstAid"></textarea>
-                      </div>
-                    </div>
-                    <div class="formBase">
-                      <div class="form-group">
-                        <label for="data">Description of follow up action</label>
-                        <textarea class="form-control" rows="4" id="incidentFollowUp" name="incidentFollowUp" required></textarea>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" required>I verify that this report is true and correct to the best of my knowledge.
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="box-footer formBase">
-                    <button class="btn btn-primary" type="submit">Log Incident</button>
-                  </div>
-                </form>
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Incident #{{ incident.id }}</h3>
+                </div>
+                <div class="box-body">
+                  <p>
+                    <b>Reporter's Information</b>
+                      <div class="span6">Name: {{ incident.member }}</div>
+                      <div class="span6">Phone: {{ incident.member.phone }}</div>
+                      <div class="span6">Email: {{ incident.member.email }}</div>
+                  </p>
+                  <p>
+                    <b>Reporter's Information</b>
+                      <div class="span6">Name: {{ incident.member }}</div>
+                      <div class="span6">Phone: {{ incident.member.phone }}</div>
+                      <div class="span6">Email: {{ incident.member.email }}</div>
+                  </p>
+
+
+                </div>
               </div>
             </div>
           </div>
@@ -280,37 +203,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="http://static.t4k.pw/dist/js/app.min.js"></script>
-    <script src="http://static.t4k.pw/plugins/datepicker/bootstrap-datepicker.js"></script>
-    <script src="http://static.t4k.pw/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <script src="http://static.t4k.pw/plugins/select2/select2.full.min.js"></script>
-    <script src="http://static.t4k.pw/dist/css/jquery.maskedinput.min.js"></script>
-    <script>
-      $(function() {
-        $('.formBase').hide();
-        $('.formAccident').hide();
-      });
-
-      $('#incidentDate').datepicker({
-        format: "yyyy-mm-dd",
-        todayHighlight: true,
-        autoclose: true,
-      });
-
-      $("#incidentTime").timepicker({
-          showInputs: false,
-          minuteStep: 1,
-          showMeridian: false
-      });
-
-      $('#incidentType').change(function() {
-        if ($(this).val() == 'ac') {
-          $('.formBase').show();
-          $('.formAccident').show();
-        } else if ($(this).val() == 'nm') {
-          $('.formBase').show();
-          $('.formAccident').hide();
-        }
-      });
-    </script>
   </body>
 </html>

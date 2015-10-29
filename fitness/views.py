@@ -63,7 +63,7 @@ def logRide(request):
 @login_required
 def viewAllIncidents(request):
     # Retreive all of the mile records
-    incidents = Incident.objects.filter(member_id__exact = request.user).order_by('-date_logged')
+    incidents = Incident.objects.filter(member_id__exact = request.user).order_by('-incident_date')
 
     # Context
     context = {
@@ -76,13 +76,50 @@ def viewAllIncidents(request):
 @login_required
 def logIncident(request):
     if request.method == 'POST':
-        date = request.POST['incidentDate'] + request.POST['incidentTime']
+        date = request.POST['incidentDate'] + " " + request.POST['incidentTime']
         event = request.POST['incidentEvent']
         location = request.POST['incidentLocation']
+        incident_description = request.POST['incidentDescription']
+        surrounding_description = request.POST['surroundingsDescription']
+        witnesses = request.POST.get('incidentWitness', default = None)
+        responders = request.POST.get('incidentResponders', default = None)
+        injuries = request.POST.get('incidentInjury', default = None)
+        first_aid = request.POST.get('incidentFirstAid', default = None)
+        follow_up = request.POST.get('incidentFollowUp', default = None)
 
-
-
-
-
+        # Save to the database
+        try:
+            object = Incident.objects.create(
+                member_id = request.user.id,
+                incident_date = date,
+                event = event,
+                incident_location = location,
+                incident_description = incident_description,
+                surrounding_description = surrounding_description,
+                witnesses = witnesses,
+                responders = responders,
+                injuries = injuries,
+                first_aid = first_aid,
+                follow_up = follow_up
+            )
+            object.save()
+        except:
+            context = {
+                'alert_title': 'Save failed!',
+                'alert_message': 'It seems like there was an error saving your incident. Try again.'
+            }
+            return render(request, 'fitness/addIncident.html', context)
+        return HttpResponseRedirect(reverse('fitness:allIncidents'))
     else:
         return render(request, 'fitness/addIncident.html')
+
+@login_required
+def viewIncident(request, incident = None):
+    # Get the incident
+    inc = Incident.objects.get(id = incident)
+    # Send it away
+    context = {
+        'incident': inc,
+    }
+
+    return render(request, 'fitness/viewIncident.html', context)
