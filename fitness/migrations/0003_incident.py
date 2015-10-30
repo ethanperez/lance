@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.contrib.postgres.fields.hstore
-from django.contrib.postgres.operations import HStoreExtension
 from django.conf import settings
 
 
@@ -15,7 +14,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        HStoreExtension(),
         migrations.CreateModel(
             name='Incident',
             fields=[
