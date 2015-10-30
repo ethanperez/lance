@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Texas 4000 RMS | Log Ride</title>
+    <title>Texas 4000 RMS | {% block title %}Page{% endblock %}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -12,9 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="http://static.t4k.pw/plugins/timepicker/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="http://static.t4k.pw/plugins/datepicker/datepicker3.css">
-    <link rel="stylesheet" href="http://static.t4k.pw/plugins/select2/select2.min.css">
+    {% block css %}
+    {% endblock %}
     <!-- Theme style -->
     <link rel="stylesheet" href="http://static.t4k.pw/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="http://static.t4k.pw/dist/css/skins/skin-blue.min.css">
@@ -34,7 +33,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="{% url 'dashboard:dashboard' %}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>RMS</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -56,7 +55,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
                   {% if request.user.site_photo_url %}
-                  <img src="dist/img/ethan-hs.jpg" class="user-image" alt="User Image">
+                  <img src="{{ request.user.site_photo_url }}" class="user-image" alt="User Image">
                   {% else %}
                   <img src="http://static.t4k.pw/dist/img/default.png" class="user-image" alt="User Image">
                   {% endif %}
@@ -67,7 +66,7 @@
                   <!-- The user image in the menu -->
                   <li class="user-header">
                     {% if request.user.site_photo_url %}
-                    <img src="dist/img/ethan-hs.jpg" class="user-image" alt="User Image">
+                    <img src="{{ request.user.site_photo_url }}" class="user-image" alt="User Image">
                     {% else %}
                     <img src="http://static.t4k.pw/dist/img/default.png" class="user-image" alt="User Image">
                     {% endif %}
@@ -77,9 +76,6 @@
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
                     <div class="pull-right">
                       <a href="{% url 'dashboard:logout' %}" class="btn btn-default btn-flat">Sign out</a>
                     </div>
@@ -90,6 +86,7 @@
           </div>
         </nav>
       </header>
+
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
 
@@ -100,18 +97,19 @@
           <div class="user-panel">
             <div class="pull-left image">
               {% if request.user.site_photo_url %}
-              <img src="dist/img/ethan-hs.jpg" class="user-image" alt="User Image">
+              <img src="{{ request.user.site_photo_url }}" class="user-image" alt="User Image">
               {% else %}
               <img src="http://static.t4k.pw/dist/img/default.png" class="user-image" alt="User Image">
               {% endif %}
             </div>
             <div class="pull-left info">
               <p></p>
-              <p>Ethan Perez</p>
+              <p>{{ request.user.get_full_name }}</p>
             </div>
           </div>
 
           <!-- Sidebar Menu -->
+          {% block sidebar%}
           <ul class="sidebar-menu">
             <li class="header">NAGIVATION</li>
             <!-- Optionally, you can add icons to the links -->
@@ -137,6 +135,8 @@
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->
+          {% endblock %}
+
         </section>
         <!-- /.sidebar -->
       </aside>
@@ -145,70 +145,19 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>Log an Incident</h1>
+          <h1>{% block action_title %}Page Title{% endblock%}</h1>
+          {% block breadcrumb %}
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-bicycle"></i> Fitness</a></li>
             <li><a href="#"> Incidents</a></li>
             <li><a href="#"> Log an Incident</a></li>
           </ol>
+          {% endblock %}
         </section>
-
         <!-- Main content -->
         <section class="content">
-          <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Incident #{{ incident.id }}</h3>
-                </div>
-                <div class="box-body">
-                  <b>Reporter's Information</b>
-                    <div class="span6">Name: {{ incident.member }}</div>
-                    <div class="span6">Phone: {{ incident.member.phone }}</div>
-                    <div class="span6">Email: {{ incident.member.email }}</div>
-                  <br>
-                   <b>Date and Time of Report</b>
-                    <div class="span6">{{ incident.date_logged }}</div>
-                  <br>
-                   <b>Date and Time of Incident</b>
-                    <div class="span6">{{ incident.incident_date }}</div>
-                  <br>
-                   <b>Location of Incident</b>
-                    <div class="span6">{{ incident.incident_location }}</div>
-                  <br>
-                   <b>Provide full description of all events leading up to and including the incident</b>
-                    <div class="span6">{{ incident.incident_description }}</div>
-                  <br>
-                   <b>Please provide detailed description of surroundings, facility condition, weather condition, etc.</b>
-                    <div class="span6">{{ incident.surrounding_description }}</div>
-                  {% if incident.witnesses %}
-                  <br>
-                   <b>Witnesses (provide full name, address, and statement)</b>
-                    <div class="span6">{{ incident.witnesses }}</div>
-                  {% endif %}
-                  {% if incident.responders %}
-                  <br>
-                   <b>Who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)</b>
-                    <div class="span6">{{ incident.responders }}</div>
-                  {% endif %}
-                  {% if incident.injuries %}
-                  <br>
-                   <b>If an injury is involved, please provide the following - name, age, phone, address, sex, relationship to event, and description</b>
-                    <div class="span6">{{ incident.injuries }}</div>
-                  {% endif %}
-                  {% if incident.first_aid %}
-                  <br>
-                   <b>If an injury is involved, was first aid administered? If so, by whom?</b>
-                    <div class="span6">{{ incident.first_aid }}</div>
-                  {% endif %}
-                  <br>
-                   <b>Description of follow up action</b>
-                    <div class="span6">{{ incident.follow_up }}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        {% block content %}
+        {% endblock %}
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -231,5 +180,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="http://static.t4k.pw/dist/js/app.min.js"></script>
+    {% block js %}
+    {% endblock %}
   </body>
 </html>

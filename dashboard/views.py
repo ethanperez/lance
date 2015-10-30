@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
+from team.models import Member
 from fitness.models import Ride
 
 def viewLogin(request):
@@ -53,3 +54,23 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard/dashboard.html', context)
+
+@login_required
+def fitnessStats(request):
+    # aggregate
+    totalMiles = Ride.objects.all().aggregate(Sum('miles'))['miles__sum']
+    totalTime = Ride.objects.all().aggregate(Sum('duration'))['duration__sum']
+
+    # Individual
+    riders = Member.objects
+    riders = riders.annotate(total_miles = Sum('rider__miles'))
+    riders = riders.annotate(total_time = Sum('rider__duration'))
+    riders = riders.order_by('-total_miles')
+
+    context = {
+        'riders': riders,
+        'totalMiles': totalMiles,
+        'totalTime': totalTime
+    }
+
+    return render(request, 'dashboard/fitness_stats.html', context)
