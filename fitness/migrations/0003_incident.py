@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('incident_location', models.CharField(max_length=100, verbose_name='location of incident')),
                 ('incident_description', models.TextField(verbose_name='provide full description of all events leading up to and including the incident')),
                 ('surrounding_description', models.TextField(verbose_name='provide full description of all events leading up to and including the incident')),
-                ('witnesses', models.extField()),
+                ('witnesses', models.TextField()),
                 ('responders', models.TextField(verbose_name='who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)')),
                 ('injuries', models.TextField()),
                 ('follow_up', models.TextField(verbose_name='description of follow up action')),
