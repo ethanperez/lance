@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import django.contrib.postgres.fields.hstore
 from django.conf import settings
 
 
@@ -25,9 +24,9 @@ class Migration(migrations.Migration):
                 ('incident_location', models.CharField(max_length=100, verbose_name='location of incident')),
                 ('incident_description', models.TextField(verbose_name='provide full description of all events leading up to and including the incident')),
                 ('surrounding_description', models.TextField(verbose_name='provide full description of all events leading up to and including the incident')),
-                ('witnesses', django.contrib.postgres.fields.hstore.HStoreField()),
+                ('witnesses', TextField()),
                 ('responders', models.TextField(verbose_name='who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)')),
-                ('injuries', django.contrib.postgres.fields.hstore.HStoreField()),
+                ('injuries', TextField()),
                 ('follow_up', models.TextField(verbose_name='description of follow up action')),
                 ('member', models.ForeignKey(verbose_name='name', related_name='incident_rider', to=settings.AUTH_USER_MODEL)),
             ],
