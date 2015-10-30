@@ -120,3 +120,9 @@ AUTH_USER_MODEL = 'team.Member'
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Get production settings
+try:
+    from local_settings import *
+except ImportError as e:
+    pass
