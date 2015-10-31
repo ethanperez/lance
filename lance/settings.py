@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import sys
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 # Set path for gunicorn
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,6 +78,10 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
+)
+
 WSGI_APPLICATION = 'lance.wsgi.application'
 
 
@@ -115,6 +121,11 @@ LOGIN_REDIRECT_URL = '/login/'
 
 # Custom Auth
 AUTH_USER_MODEL = 'team.Member'
+
+# Suit config
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Texas 4000 RMS'
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
