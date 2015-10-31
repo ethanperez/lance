@@ -47,11 +47,13 @@
               <th>Phone</th>
             </tr>
             {% for teammate in teammates %}
+            {% if teammate.is_rider %}
             <tr>
               <td>{{ teammate.get_full_name }}</td>
               <td>{{ teammate.email }}</td>
               <td>{{ teammate.get_phone }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
           </tbody>
         </table>
