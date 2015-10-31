@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import views as auth_views
 from django.db.models import Sum
 from team.models import Member
 from fitness.models import Ride
