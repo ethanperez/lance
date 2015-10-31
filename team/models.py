@@ -98,5 +98,11 @@ class Member(AbstractBaseUser, PermissionsMixin):
   def get_short_name(self):
     return self.first_name
 
+  def get_phone(self):
+    try:
+      return "(" + self.phone[0:3] + ") " + self.phone[3:6] + " - " + self.phone[6:9]
+    except:
+      return self.phone
+
   def __str__(self):
     return self.get_full_name()
