@@ -6,7 +6,7 @@
 <ul class="sidebar-menu">
   <li class="header">NAGIVATION</li>
   <!-- Optionally, you can add icons to the links -->
-  <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+  <li class="active"><a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
   <li class="treeview">
     <a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-bicycle"></i> <span>Fitness</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
@@ -15,16 +15,10 @@
     </ul>
   </li>
   <li class="treeview">
-    <a href="#"><i class="fa fa-money"></i> <span>Fundraising</span> <i class="fa fa-angle-left pull-right"></i></a>
-    <ul class="treeview-menu">
-      <li><a href="#">Personal</a></li>
-      <li><a href="#">Team</a></li>
-    </ul>
-  </li>
-  <li class="treeview">
     <a href="#"><i class="fa fa-group"></i> <span>Team</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
       <li><a href="#">Directory</a></li>
+      <li><a href="{% url 'team:stats' %}">Fitness Stats</a></li>
     </ul>
   </li>
 </ul><!-- /.sidebar-menu -->
@@ -39,7 +33,7 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-lg-3 col-xs-12">
+  <div class="col-lg-6 col-xs-12">
     <div class="small-box bg-aqua">
       <div class="inner">
         <h3>{{ total_miles.miles__sum }}</h3>
@@ -53,7 +47,7 @@
       </a>
     </div>
   </div>
-  <div class="col-lg-3 col-xs-12">
+  <div class="col-lg-6 col-xs-12">
     <div class="small-box bg-orange">
       <div class="inner">
         <h3>{{ total_duration.duration__sum }}</h3>
@@ -67,24 +61,10 @@
       </a>
     </div>
   </div>
-  <div class="col-lg-6 col-xs-12">
-    <div class="small-box bg-green">
-      <div class="inner">
-        <h3>$3,782.89</h3>
-        <p>Dollars Raised</p>
-      </div>
-      <div class="icon">
-        <i class="fa fa-money"></i>
-      </div>
-      <a href="#" class="small-box-footer">
-        View fundraising totals <i class="fa fa-arrow-circle-right"></i>
-      </a>
-    </div>
-  </div>
 </div>
 
 <div class="row">
-  <div class="col-lg-6 col-xs-12">
+  <div class="col-lg-12 col-xs-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">Most Recent Rides</h3>
@@ -113,43 +93,6 @@
         </table>
       </div>
       {% endif %}
-    </div>
-  </div>
-  <div class="col-lg-6 col-xs-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Fundraising Progression</h3>
-      </div>
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-          <tbody>
-            <tr>
-              <th>Date</th>
-              <th>Amount</th>
-            </tr>
-            <tr>
-              <td>Oct. 26, 2015</td>
-              <td>$3,782.89</td>
-            </tr>
-            <tr>
-              <td>Oct. 25, 2015</td>
-              <td>$3,266.22</td>
-            </tr>
-            <tr>
-              <td>Oct. 24, 2015</td>
-              <td>$3,266.22</td>
-            </tr>
-            <tr>
-              <td>Oct. 23, 2015</td>
-              <td>$2,999.32</td>
-            </tr>
-            <tr>
-              <td>Oct. 22, 2015</td>
-              <td>$1,000</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 </div>
