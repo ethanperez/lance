@@ -32,7 +32,7 @@ def fitnessStats(request):
 def teamDirectory(request):
     # Get all the team info
     teammates = Member.objects
-    teammates = teammates.order_by('-first_name')
+    teammates = teammates.order_by('first_name')
 
     context = {
         'teammates': teammates,
