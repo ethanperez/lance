@@ -131,7 +131,7 @@
             <li class="treeview">
               <a href="#"><i class="fa fa-group"></i> <span>Team</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Directory</a></li>
+                <li><a href="{% url 'team:directory' %}">Directory</a></li>
                 <li><a href="{% url 'team:stats' %}">Fitness Stats</a></li>
               </ul>
             </li>
@@ -146,7 +146,8 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>{% block action_title %}Page Title{% endblock%}</h1>
+          <h1>{% block action_title %}Page Title{% endblock %}</h1>
+          <small>{% block small_action_title %}{% endblock %}</small>
           {% block breadcrumb %}
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-bicycle"></i> Fitness</a></li>

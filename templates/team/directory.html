@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Team Fitness Stats{% endblock %}
+{% block title %}Team Directory{% endblock %}
 
 {% block sidebar %}
 <ul class="sidebar-menu">
@@ -17,18 +17,19 @@
   <li class="treeview active">
     <a href="#"><i class="fa fa-group"></i> <span>Team</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
-      <li><a href="{% url 'team:directory' %}">Directory</a></li>
-      <li class="active"><a href="{% url 'team:stats' %}">Fitness Stats</a></li>
+      <li class="active"><a href="{% url 'team:directory' %}">Directory</a></li>
+      <li><a href="{% url 'team:stats' %}">Fitness Stats</a></li>
     </ul>
   </li>
 </ul><!-- /.sidebar-menu -->
 {% endblock %}
 
-{% block action_title%}Team Fitness Stats{% endblock %}
+{% block action_title%}Team Directory{% endblock %}
+{% block small_action_title %}Use 'CTRL/CMD-F' to search for a teammate{% endblock %}
 {% block breadcrumb %}
 <ol class="breadcrumb">
   <li><a href="#"><i class="fa fa-group"></i> Team</a></li>
-  <li><a href="#"> Fiitness Stats</a></li>
+  <li><a href="#"> Directory</a></li>
 </ol>
 {% endblock %}
 
@@ -42,14 +43,16 @@
           <tbody>
             <tr>
               <th>Teammate</th>
-              <th>Miles Ridden</th>
-              <th>Time Ridden</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Route</th>
             </tr>
-            {% for rider in riders %}
+            {% for teammate in teammates %}
             <tr>
-              <td>{{ rider.get_full_name }}</td>
-              <td>{{ rider.total_miles }}</td>
-              <td>{{ rider.total_time }}</td>
+              <td>{{ teammate.get_full_name }}</td>
+              <td>{{ teammate.email }}</td>
+              <td>{{ teammate.phone }}</td>
+              <td>{{ teammate.route }}</td>
             </tr>
             {% endfor %}
           </tbody>
