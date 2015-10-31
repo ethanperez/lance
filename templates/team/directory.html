@@ -45,14 +45,12 @@
               <th>Teammate</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Route</th>
             </tr>
             {% for teammate in teammates %}
             <tr>
               <td>{{ teammate.get_full_name }}</td>
               <td>{{ teammate.email }}</td>
               <td>{{ teammate.get_phone }}</td>
-              <td>{{ teammate.route }}</td>
             </tr>
             {% endfor %}
           </tbody>
