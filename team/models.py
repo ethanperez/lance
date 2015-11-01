@@ -100,7 +100,8 @@ class Member(AbstractBaseUser, PermissionsMixin):
 
   def get_phone(self):
     try:
-      return "(" + self.phone[0:3] + ") " + self.phone[3:6] + " - " + self.phone[6:9]
+      new_phone = str(self.phone)
+      return "(" + new_phone[0:3] + ") " + new_phone[3:6] + " - " + new_phone[6:9]
     except:
       return self.phone
 
