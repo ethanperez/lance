@@ -76,6 +76,9 @@
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="manage/password_change/" class="btn btn-default btn-flat">Change Password</a>
+                    </div>
                     <div class="pull-right">
                       <a href="{% url 'dashboard:logout' %}" class="btn btn-default btn-flat">Sign out</a>
                     </div>
@@ -113,6 +116,9 @@
           <ul class="sidebar-menu">
             <li class="header">NAGIVATION</li>
             <!-- Optionally, you can add icons to the links -->
+            {% if request.user.is_admin %}
+            <li><a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-dashboard"></i> <span>Admin</span></a></li>
+            {% endif %}
             <li><a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             <li class="treeview active">
               <a href="#"><i class="fa fa-bicycle"></i> <span>Fitness</span> <i class="fa fa-angle-left pull-right"></i></a>

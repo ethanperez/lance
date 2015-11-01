@@ -10,4 +10,10 @@ class RideAdmin(admin.ModelAdmin):
   ordering = ('-logged', '-date')
 
 admin.site.register(Ride, RideAdmin)
-admin.site.register(Incident)
+
+class IncidentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'member', 'date_logged', 'incident_date', 'follow_up')
+    list_filter = ('date_logged', 'incident_date')
+    ordering = ('-date_logged', '-incident_date')
+
+admin.site.register(Incident, IncidentAdmin)

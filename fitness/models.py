@@ -23,7 +23,7 @@ class Ride(models.Model):
 
 class Incident(models.Model):
   member = models.ForeignKey(Member, verbose_name = 'name', related_name = 'incident_rider')
-  date_logged = models.DateTimeField(auto_now_add = True)
+  date_logged = models.DateTimeField('date logged', auto_now_add = True)
   event = models.CharField(max_length = 100)
   incident_date = models.DateTimeField()
   incident_location = models.CharField('location of incident', max_length = 100)

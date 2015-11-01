@@ -6,6 +6,9 @@
 <ul class="sidebar-menu">
   <li class="header">NAGIVATION</li>
   <!-- Optionally, you can add icons to the links -->
+  {% if request.user.is_staff %}
+  <li><a href="{% url 'dashboard:dashboard' %}admin/"><i class="fa fa-dashboard"></i> <span>Admin</span></a></li>
+  {% endif %}
   <li class="active"><a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
   <li class="treeview">
     <a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-bicycle"></i> <span>Fitness</span> <i class="fa fa-angle-left pull-right"></i></a>
