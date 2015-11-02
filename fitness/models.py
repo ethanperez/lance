@@ -28,7 +28,7 @@ class Incident(models.Model):
   incident_date = models.DateTimeField()
   incident_location = models.CharField('location of incident', max_length = 100)
   incident_description = models.TextField('provide full description of all events leading up to and including the incident')
-  surrounding_description = models.TextField('provide full description of all events leading up to and including the incident')
+  surrounding_description = models.TextField('please provide detailed description of surroundings, facility condition, weather condition, etc.')
   witnesses = models.TextField()
   responders = models.TextField('who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)')
   injuries = models.TextField()
