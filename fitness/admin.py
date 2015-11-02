@@ -12,7 +12,7 @@ class RideAdmin(admin.ModelAdmin):
 admin.site.register(Ride, RideAdmin)
 
 class IncidentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'member', 'date_logged', 'incident_date', 'follow_up')
+    list_display = ('id', 'member', 'date_logged', 'incident_date', 'follow_up', 'read')
     list_filter = ('date_logged', 'incident_date')
     ordering = ('-date_logged', '-incident_date')
 
