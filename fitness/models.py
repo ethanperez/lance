@@ -34,6 +34,7 @@ class Incident(models.Model):
   injuries = models.TextField()
   first_aid = models.TextField()
   follow_up = models.TextField('description of follow up action')
+  read = models.BooleanField(default = False)
 
   def __str__(self):
     return "{0} - {1}".format(self.member, self.incident_date)
