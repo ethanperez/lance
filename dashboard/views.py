@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import views as auth_views
 from django.db.models import Sum
 from team.models import Member
-from fitness.models import Ride
+from fitness.models import Ride, Incident
 
 def viewLogin(request):
     if request.method == 'POST':
@@ -46,12 +46,15 @@ def dashboard(request):
     miles = rides.aggregate(Sum('miles'))
     duration = rides.aggregate(Sum('duration'))
 
+    # Incident count
+    if request.user.is_staff or request.user.is_superuser:
+        rides.incidents = Incident.objects.filter(read = False).count()
 
     context = {
         'rides': rides,
         'recent_rides': recent_rides,
         'total_miles': miles,
-        'total_duration': duration
+        'total_duration': duration,
     }
 
     return render(request, 'dashboard/dashboard.html', context)

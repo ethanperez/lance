@@ -35,7 +35,54 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
+  <div class="row">
+    {% if request.user.is_staff %}
+    <div class="col-lg-3 col-xs-12">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>{{ total_miles.miles__sum }}</h3>
+          <p>Miles Ridden</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-bicycle"></i>
+        </div>
+        <a href="{% url 'fitness:allRides' %}" class="small-box-footer">
+          View rides <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xs-12">
+      <div class="small-box bg-orange">
+        <div class="inner">
+          <h3>{{ total_duration.duration__sum }}</h3>
+          <p>Time Ridden</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <a href="{% url 'fitness:allRides' %}" class="small-box-footer">
+          View rides <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-6 col-xs-12">
+      <div class="small-box bg-orange">
+        <div class="inner">
+          <h3>{{ rides.incidents }}</h3>
+          <p>New Incidents</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-ambulance"></i>
+        </div>
+        <a href="{% url 'dashboard:dashboard' %}admin/fitness/incident/" class="small-box-footer">
+          View incidents <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+
   <div class="col-lg-6 col-xs-12">
     <div class="small-box bg-aqua">
       <div class="inner">
@@ -65,6 +112,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 <div class="row">
   <div class="col-lg-12 col-xs-12">
