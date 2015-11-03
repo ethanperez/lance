@@ -153,15 +153,15 @@
             </div><!-- /.form-group -->
             <div class="form-group">
               <label for="data">Miles Ridden</label>
-              <input type="text" class="form-control" id="rideMiles" name="rideMiles" placeholder="ex. 123.22" required>
+              <input type="text" class="form-control" id="rideMiles" name="rideMiles" placeholder="123.22" required>
             </div>
             <div class="form-group">
-              <label for="data">Pace</label>
-              <input type="text" class="form-control" id="ridePace" name="ridePace" placeholder="MM:SS"  required>
+              <label for="data">Pace (M/h)</label>
+              <input type="text" class="form-control" id="ridePace" name="ridePace" placeholder="8.32"  required>
             </div>
             <div class="form-group">
               <label for="data">Time Ridden</label>
-              <input type="text" class="form-control" id="rideTime" name="rideTime" required>
+              <input type="text" class="form-control" id="rideTime" name="rideTime" placeholder="04:15:00" required>
             </div>
             <div class="form-group">
               <label for="data">Comments</label>
@@ -181,6 +181,7 @@
 <script src="http://static.t4k.pw/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script src="http://static.t4k.pw/plugins/select2/select2.full.min.js"></script>
 <script src="http://static.t4k.pw/dist/css/jquery.maskedinput.min.js"></script>
+<script src="http://static.t4k.pw/plugins/inputmask/jquery.inputmask.bundle.js"></script>
 <script>
   $('#rideGroup').select2();
 
@@ -191,6 +192,8 @@
     endDate: '0d'
   });
 
-  $("#rideTime").mask("99:99:99");
+  $(document).ready(function() {
+    $("#rideTime").inputmask('99:99:99');
+  });
 </script>
 {% endblock %}
