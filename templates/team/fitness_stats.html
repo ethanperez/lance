@@ -37,6 +37,40 @@
 
 {% block content%}
 <div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="info-box bg-aqua">
+      <span class="info-box-icon"><i class="fa fa-bicycle"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total Miles Ridden</span>
+        <span class="info-box-number">{{ totalMiles }}</span>
+
+<!--         <div class="progress">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+            <span class="progress-description">
+              70% Increase in 30 Days
+            </span> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="info-box bg-orange">
+      <span class="info-box-icon"><i class="fa fa-clock-o"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total Time Ridden</span>
+        <span class="info-box-number">{{ totalTime }}</span>
+
+<!--         <div class="progress">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+            <span class="progress-description">
+              70% Increase in 30 Days
+            </span> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-xs-12">
     <div class="box">
       <!-- /.box-header -->
