@@ -25,7 +25,7 @@ class TestAuth(TestCase):
   def testSuperLifeCycle(self):
     # Login
     response = self.client.login(username = 'super@test.com', password = 'super')
-    self.assertEqual(response, True)
+    self.assertTrue(response)
 
     # Logout
     self.client.logout()
@@ -42,7 +42,7 @@ class TestAuth(TestCase):
   def testNormalLifeCycle(self):
     # Login
     response = self.client.login(username = 'normal@test.com', password = 'normal')
-    self.assertEqual(response, True)
+    self.assertTrue(response)
 
     # Logout
     self.client.logout()
