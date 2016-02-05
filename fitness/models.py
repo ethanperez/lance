@@ -17,10 +17,6 @@ class Ride(models.Model):
   def __str__(self):
     return "{0}; {1}; {2}".format(self.member, self.miles, self.date)
 
-  def get_group_members(self):
-    return ", ".join([r.get_full_name() for r in self.group_members.all()])
-  get_group_members.short_description = 'Group members'
-
 class Incident(models.Model):
   member = models.ForeignKey(Member, verbose_name = 'name', related_name = 'incident_rider')
   date_logged = models.DateTimeField('date logged', auto_now_add = True)

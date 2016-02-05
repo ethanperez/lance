@@ -1,4 +1,3 @@
-import unittest
 from django.test import TestCase
 from team.models import Member
 from django.test import Client
