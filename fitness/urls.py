@@ -8,5 +8,6 @@ urlpatterns = patterns('fitness.views',
     # Incidents
     url(r'^incidents/$', views.viewAllIncidents, name = 'allIncidents'),
     url(r'^incidents/add/$', views.logIncident, name = 'logIncident'),
-    url(r'incidents/(?P<incident>\d+)$', views.viewIncident, name='viewIncident')
+    url(r'incidents/(?P<incident>\d+)$', views.viewIncident, name='viewIncident'),
+    url(r'incidents/(?P<incident>\d+)/pdf/$', views.viewIncidentPdf, name='viewIncidentPdf')
 )

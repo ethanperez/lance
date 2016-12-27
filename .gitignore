@@ -62,4 +62,4 @@ target/
 .vagrant/
 
 # SQL
-.sql
+*.sql

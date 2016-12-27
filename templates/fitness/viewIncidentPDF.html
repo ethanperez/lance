@@ -1,0 +1,55 @@
+<h1 style="text-align: center;">Texas 4000 Incident Report</h1>
+
+{% block content %}
+<div class="col-md-6 col-md-offset-3">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Incident #{{ incident.id }}</h3>
+    </div>
+    <div class="box-body">
+      <b>Reporter's Information</b>
+        <div class="span6">Name: {{ incident.member }}</div>
+        <div class="span6">Phone: {{ incident.member.phone }}</div>
+        <div class="span6">Email: {{ incident.member.email }}</div>
+      <br>
+       <b>Date and Time of Report</b>
+        <div class="span6">{{ incident.date_logged }}</div>
+      <br>
+       <b>Date and Time of Incident</b>
+        <div class="span6">{{ incident.incident_date }}</div>
+      <br>
+       <b>Location of Incident</b>
+        <div class="span6">{{ incident.incident_location }}</div>
+      <br>
+       <b>Provide full description of all events leading up to and including the incident</b>
+        <div class="span6">{{ incident.incident_description }}</div>
+      <br>
+       <b>Please provide detailed description of surroundings, facility condition, weather condition, etc.</b>
+        <div class="span6">{{ incident.surrounding_description }}</div>
+      {% if incident.witnesses %}
+      <br>
+       <b>Witnesses (provide full name, address, and statement)</b>
+        <div class="span6">{{ incident.witnesses }}</div>
+      {% endif %}
+      {% if incident.responders %}
+      <br>
+       <b>Who responded to the incident? (include all parties - Riders, Paramedics, Police, etc.)</b>
+        <div class="span6">{{ incident.responders }}</div>
+      {% endif %}
+      {% if incident.injuries %}
+      <br>
+       <b>If an injury is involved, please provide the following - name, age, phone, address, sex, relationship to event, and description</b>
+        <div class="span6">{{ incident.injuries }}</div>
+      {% endif %}
+      {% if incident.first_aid %}
+      <br>
+       <b>If an injury is involved, was first aid administered? If so, by whom?</b>
+        <div class="span6">{{ incident.first_aid }}</div>
+      {% endif %}
+      <br>
+       <b>Description of follow up action</b>
+        <div class="span6">{{ incident.follow_up }}</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
