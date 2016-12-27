@@ -124,7 +124,8 @@ AUTH_USER_MODEL = 'team.Member'
 
 # Suit config
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'Texas 4000 RMS'
+    'ADMIN_NAME': 'Texas 4000 RMS',
+    'SEARCH_URL': ''
 }
 
 # Static files (CSS, JavaScript, Images)

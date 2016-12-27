@@ -7,7 +7,7 @@ class RideAdmin(admin.ModelAdmin):
 
   list_display = ('member', 'group_members', 'date', 'duration', 'miles', 'pace', 'logged')
   list_filter = ('date', 'logged')
-  search_fields = ('rider__first_name', 'rider__last_name')
+  search_fields = ('member__first_name', 'member__last_name')
   ordering = ('-logged', '-date')
 
 admin.site.register(Ride, RideAdmin)
@@ -15,6 +15,7 @@ admin.site.register(Ride, RideAdmin)
 class IncidentAdmin(admin.ModelAdmin):
     list_display = ('id', 'member', 'date_logged', 'incident_date', 'follow_up', 'read', 'pdf_url')
     list_filter = ('date_logged', 'incident_date')
+    search_fields = ('member__first_name', 'member__first_name', 'follow_up',)
     ordering = ('-date_logged', '-incident_date')
 
     def pdf_url(self, obj):
