@@ -65,7 +65,14 @@ def logRide(request):
 
         return HttpResponseRedirect(reverse('fitness:allRides'))
     else:
-        return render(request, 'fitness/addRide.html')
+        teammates = Member.objects
+        teammates = teammates.order_by('first_name')
+
+        context = {
+            'teammates': teammates,
+        }
+
+        return render(request, 'fitness/addRide.html', context)
 
 @login_required
 def viewAllIncidents(request):
