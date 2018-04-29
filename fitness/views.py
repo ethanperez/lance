@@ -129,7 +129,7 @@ def logIncident(request):
         # We've saved, now try to email
         # Replace sender@example.com with your "From" address.
         # This address must be verified with Amazon SES.
-        SENDER = "Ethan Perez <ethan@ethanperez.com>"
+        SENDER = "Texas 4000 RMS <notifications@t4k.pw>"
 
         # Replace recipient@example.com with a "To" address. If your account
         # is still in the sandbox, this address must be verified.
@@ -139,22 +139,16 @@ def logIncident(request):
         AWS_REGION = "us-east-1"
 
         # The subject line for the email.
-        SUBJECT = "Amazon SES Test (SDK for Python)"
-
-        # The email body for recipients with non-HTML email clients.
-        BODY_TEXT = ("Amazon SES Test (Python)\r\n"
-                    "This email was sent with Amazon SES using the "
-                    "AWS SDK for Python (Boto)."
-                    )
+        FILING_USER = Member.objects.filter(member_id = request.user.id)
+        SUBJECT = "{} has filed an incident report"
 
         # The HTML body of the email.
         BODY_HTML = """<html>
         <head></head>
         <body>
-        <p>This email was sent with
-            <a href='https://aws.amazon.com/ses/'>Amazon {}</a> using the
-            <a href='https://aws.amazon.com/sdk-for-python/'>
-            AWS SDK for Python (Boto)</a>.</p>
+        <p>
+            You can view the report <a href='http://rms.texas4000.org/fitness/incidents/{}/pdf/'>here</a>.
+        </p>
         </body>
         </html>
         """
@@ -179,14 +173,10 @@ def logIncident(request):
                             'Charset': CHARSET,
                             'Data': BODY_HTML.format(object.id),
                         },
-                        'Text': {
-                            'Charset': CHARSET,
-                            'Data': BODY_TEXT,
-                        },
                     },
                     'Subject': {
                         'Charset': CHARSET,
-                        'Data': SUBJECT,
+                        'Data': SUBJECT.format(FILING_USER.get_full_name()),
                     },
                 },
                 Source=SENDER,
