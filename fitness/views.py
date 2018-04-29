@@ -164,7 +164,8 @@ def logIncident(request):
             response = client.send_email(
                 Destination={
                     'ToAddresses': [
-                        RECIPIENT,
+                        "ethan@ethanperez.com",
+                        "ethan+test@ethanperez.com",
                     ],
                 },
                 Message={
