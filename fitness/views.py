@@ -147,7 +147,7 @@ def logIncident(request):
         <head></head>
         <body>
         <p>
-            You can view the report <a href='http://rms.texas4000.org/fitness/incidents/{}/pdf/'>here</a>.
+            You can view the report <a href='{}/fitness/incidents/{}/pdf/'>here</a>.
         </p>
         </body>
         </html>
@@ -171,7 +171,7 @@ def logIncident(request):
                     'Body': {
                         'Html': {
                             'Charset': CHARSET,
-                            'Data': BODY_HTML.format(object.id),
+                            'Data': BODY_HTML.format(request.get_host(), object.id),
                         },
                     },
                     'Subject': {
