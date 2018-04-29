@@ -63,3 +63,6 @@ target/
 
 # SQL
 *.sql
+
+# Local settings
+lance/local_settings.py
