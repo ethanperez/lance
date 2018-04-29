@@ -139,7 +139,7 @@ def logIncident(request):
         AWS_REGION = "us-east-1"
 
         # The subject line for the email.
-        FILING_USER = Member.objects.filter(member_id = request.user.id)
+        FILING_USER = Member.objects.filter(id = request.user.id)
         SUBJECT = "{} has filed an incident report"
 
         # The HTML body of the email.
