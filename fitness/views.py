@@ -165,7 +165,8 @@ def logIncident(request):
                 Destination={
                     'ToAddresses': [
                         "ethan@ethanperez.com",
-                        "ethan+test@ethanperez.com",
+                        "ross@texas4000.org",
+                        "scott@texas4000.org",
                     ],
                 },
                 Message={
