@@ -1,5 +1,5 @@
 chardet==2.3.0
-Django==1.8.5
+Django==2.2.24
 django-suit==0.2.15
 django-xhtml2pdf==0.0.3
 gunicorn==19.3.0
